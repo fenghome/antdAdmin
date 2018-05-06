@@ -1,6 +1,6 @@
 {
     "extraBabelPlugins": [
-        ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": "css" }]
+        ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": true }]
     ],
     "env": {
         "development": {

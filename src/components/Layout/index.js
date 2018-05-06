@@ -1,6 +1,5 @@
-import React from 'react';
-const Layout = ()=>(
-  <h3>Layout</h3>
-)
+import styles from './Layout.less';
 
-export default Layout;
+export {
+  styles
+}
