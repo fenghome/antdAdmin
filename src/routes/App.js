@@ -1,18 +1,29 @@
 import React from 'react';
-import { connect } from 'dva';
-import { withRouter } from 'dva/router'
 import { Layout } from 'antd';
 import { Helmet } from 'react-helmet';
-import { styles } from '../components/Layout';
-import '../themes/index.less';
-import './App.less';
+import { connect } from 'dva';
+import { withRouter } from 'dva/router';
+import MyLayout from '../components/Layout/';
+import styles from '../components/Layout/Layout.less';
 
 const { Content, Footer, Sider } = Layout;
-const App = ({ children, dispatch, app, loading, location }) => {
-  const {
+const App = ({ children, app, location, }) => {
+  const { darkTheme, isNavbar, siderFold,menu, navOpenKeys, } = app;
+
+  const siderProps = {
+    menu,
+    location,
+    siderFold,
     darkTheme,
-  } = app;
-  let { pathname } = location;
+    navOpenKeys,
+    changeTheme() {
+
+    },
+    changeOpenKeys(openKeys) {
+
+    }
+  }
+
   return (
     <div>
       <Helmet>
@@ -20,9 +31,16 @@ const App = ({ children, dispatch, app, loading, location }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
       <Layout className={darkTheme ? styles.dark : styles.light}>
-        <Sider>
-          边框
-        </Sider>
+        {
+          !isNavbar &&
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={siderFold}
+          >
+            <MyLayout.Sider siderFold={siderFold}/>
+          </Sider>
+        }
         <Layout>
 
           <Content>

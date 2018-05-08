@@ -1,5 +1,5 @@
-import styles from './Layout.less';
+import Sider from './Sider';
 
-export {
-  styles
+export default {
+  Sider,
 }

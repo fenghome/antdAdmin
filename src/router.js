@@ -82,6 +82,10 @@ const Routers = ({history, app}) => {
       models: () => [import('./models/post')],
       component: () => import('./routes/post/'),
     },
+    {
+      path:'/test',
+      component:()=>import('./routes/test'),
+    }
   ]
 
   return (
@@ -101,9 +105,7 @@ const Routers = ({history, app}) => {
             <Route component={error} />
           </Switch>
         </App>
-
       </LocaleProvider>
-
     </ConnectedRouter>
   )
 }
