@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Icon, Switch } from 'antd';
 import config from '../../utils/config';
 import styles from './Layout.less';
-// import Menus from './Menu';
+import Menus from './Menu';
 
 const Sider = ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, changeOpenKeys, menu }) => {
 
@@ -14,7 +14,14 @@ const Sider = ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, chang
         <img alt="logo" src={config.logo} />
         {siderFold ? '' : <span>{config.name}</span>}
       </div>
-
+      <Menus
+        menu={menu}
+        siderFold={siderFold}
+        darkTheme={darkTheme}
+        location={location}
+        navOpenKeys={navOpenKeys}
+        changeOpenKeys={changeOpenKeys}
+      />
     </div>
   )
 }

@@ -8,7 +8,7 @@ import styles from '../components/Layout/Layout.less';
 
 const { Content, Footer, Sider } = Layout;
 const App = ({ children, app, location, }) => {
-  const { darkTheme, isNavbar, siderFold,menu, navOpenKeys, } = app;
+  const { darkTheme, isNavbar, siderFold, menu, navOpenKeys, } = app;
 
   const siderProps = {
     menu,
@@ -38,7 +38,7 @@ const App = ({ children, app, location, }) => {
             collapsible
             collapsed={siderFold}
           >
-            <MyLayout.Sider siderFold={siderFold}/>
+            <MyLayout.Sider {...siderProps} />
           </Sider>
         }
         <Layout>

@@ -8,7 +8,7 @@ export default {
   state: {
     darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
-    siderFold: true,
+    siderFold: false,
     menu: [
       {
         id: 1,
