@@ -6,9 +6,10 @@ export default {
   namespace: 'app',
 
   state: {
-    darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
-    isNavbar: document.body.clientWidth < 769,
-    siderFold: false,
+    user:{},
+    permissions: {
+      visit: [],
+    },
     menu: [
       {
         id: 1,
@@ -17,7 +18,13 @@ export default {
         router: '/dashboard',
       },
     ],
+    menuPopoverVisible: false,
+    siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
+    darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
+    isNavbar: document.body.clientWidth < 769,
     navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    locationPathname: '',
+    locationQuery: {},
   },
 
   subscriptions: {

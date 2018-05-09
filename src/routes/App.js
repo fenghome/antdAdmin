@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { BackTop,Layout } from 'antd';
 import { Helmet } from 'react-helmet';
 import { connect } from 'dva';
 import { withRouter } from 'dva/router';
@@ -7,23 +7,9 @@ import MyLayout from '../components/Layout/';
 import styles from '../components/Layout/Layout.less';
 
 const { Content, Footer, Sider } = Layout;
+const { Header } = MyLayout;
 const App = ({ children, app, location, }) => {
   const { darkTheme, isNavbar, siderFold, menu, navOpenKeys, } = app;
-
-  const siderProps = {
-    menu,
-    location,
-    siderFold,
-    darkTheme,
-    navOpenKeys,
-    changeTheme() {
-
-    },
-    changeOpenKeys(openKeys) {
-
-    }
-  }
-
   return (
     <div>
       <Helmet>
@@ -38,11 +24,12 @@ const App = ({ children, app, location, }) => {
             collapsible
             collapsed={siderFold}
           >
-            <MyLayout.Sider {...siderProps} />
+            <MyLayout.Sider />
           </Sider>
         }
-        <Layout>
-
+        <Layout style={{heigth:'100vh',overflow:'scroll'}} id="mainContainer">
+          <BackTop target={()=>document.getElementById('mainContainer')}/>
+          <Header />
           <Content>
             {children}
           </Content>

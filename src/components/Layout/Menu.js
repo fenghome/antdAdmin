@@ -1,13 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Menu, Icon } from 'antd'
-import { Link } from 'react-router-dom'
-import { arrayToTree, queryArray } from '../../utils'
-import pathToRegexp from 'path-to-regexp'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom';
+import { arrayToTree, queryArray } from '../../utils';
+import { withRouter } from 'dva/router';
+import { connect } from 'dva';
+import pathToRegexp from 'path-to-regexp';
+
 
 const Menus = ({
-  siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location,
+  app, location,
 }) => {
+
+  const { menu, siderFold, darkTheme, isNavbar } = app;
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
   const levelMap = {}
@@ -61,6 +66,15 @@ const Menus = ({
     return map[key] || []
   }
 
+  const navOpenKeys = () => {
+
+  }
+
+  const changeOpenKeys = () => {
+
+  }
+
+
   const onOpenChange = (openKeys) => {
     const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
     const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
@@ -109,14 +123,20 @@ const Menus = ({
   }
 
   return (
-    <Menu
-      {...menuProps}
-      mode={siderFold ? 'vertical' : 'inline'}
-      theme={darkTheme ? 'dark' : 'light'}
-      selectedKeys={defaultSelectedKeys}
-    >
-      {menuItems}
-    </Menu>
+    <div>
+      {
+        menu.length &&
+        <Menu
+          {...menuProps}
+          mode={siderFold ? 'vertical' : 'inline'}
+          theme={darkTheme ? 'dark' : 'light'}
+          selectedKeys={defaultSelectedKeys}
+        >
+          {menuItems}
+        </Menu>
+      }
+    </div>
+
   )
 }
 
@@ -129,4 +149,4 @@ Menus.propTypes = {
   location: PropTypes.object,
 }
 
-export default Menus
+export default withRouter(connect(({ app }) => ({ app }))(Menus));
