@@ -6,7 +6,7 @@ export default {
   namespace: 'app',
 
   state: {
-    user:{},
+    user: {},
     permissions: {
       visit: [],
     },
@@ -39,9 +39,13 @@ export default {
   },
 
   reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload };
+    switchMenuPopover(state, { payload: menuPopoverVisible }) {
+      return { ...state, menuPopoverVisible };
     },
+
+    switchSider(state, { payload: isNavbar }) {
+      return { ...state, isNavbar }
+    }
   },
 
 };
